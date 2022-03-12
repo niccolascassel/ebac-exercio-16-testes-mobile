@@ -1,13 +1,11 @@
-const selector = 'new UiSelector().description("__DESC__").className("__CLASS__")'
-
 class HomeScreen{
 
-    get #enterFormsComponents() {
-        return $(`android=${selector.replace("__DESC__", "Forms").replace("__CLASS__", "android.widget.Button")}`)
+    get #enterStoreAddress() {
+        return $('id:button_login_store')
     }
 
-    async formsComponents() { 
-        await this.#enterFormsComponents.click()
+    async goToLogin() { 
+        await this.#enterStoreAddress.click()
     }
 }
 

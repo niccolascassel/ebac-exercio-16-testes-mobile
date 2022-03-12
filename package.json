@@ -20,6 +20,7 @@
         "allure-commandline": "^2.17.2",
         "appium": "^1.22.2",
         "chromedriver": "^98.0.1",
+        "dotenv": "^16.0.0",
         "wdio-chromedriver-service": "^7.2.8",
         "wdio-video-reporter": "^3.2.0"
     },

@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const { join } = require('path')
 const allure = require('allure-commandline')
 const video = require('wdio-video-reporter');
@@ -6,18 +8,26 @@ exports.config = {
     hostname: 'localhost',
     port: 4723,
     path: '/wd/hub',
-    //services: ['appium'],
+    // user: process.env.BROWSERSTACK_USERNAME,
+    // key: process.env.BROWSERSTACK_ACCESS_KEY,
+    // services: ['browserstack'],
     specs: [
         './test/specs/**/*.js'
     ],
     framework: 'mocha',
     capabilities: [{
         "platformName": "Android",
-        "platformVersion": "11",
-        "deviceName": "Pixel 2 API 30",
+        "platformVersion": "12",
+        "deviceName": "Pixel 5 API 31",
         "automationName": "UiAutomator2",
-        "app": join(process.cwd(), './app/android/Android-NativeDemoApp-0.4.0.apk'),
-        "appWaitActivity": "com.wdiodemoapp.MainActivity"
+        "app": join(process.cwd(), './app/android/loja-ebac.apk'),
+        "appWaitActivity": ".ui.login.LoginActivity"
+        // project: "First Webdriverio Android Project",
+        // build: "browserstack-build-1",
+        // name: "local_test",
+        // device: "Google Pixel 2",
+        // os_version: "9.0",
+        // app: process.env.BROWSERSTACK_APP_ID
     }],
     waitForTimeout: 20000,
     mochaOpts: {
@@ -39,9 +49,7 @@ exports.config = {
         const reportError = new Error('Could not generate Allure report')
         const generation = allure(['generate', 'allure-results', '--clean'])
         return new Promise((resolve, reject) => {
-            const generationTimeout = setTimeout(
-                () => reject(reportError),
-                5000)
+            const generationTimeout = setTimeout(() => reject(reportError), 30000)
 
             generation.on('exit', function(exitCode) {
                 clearTimeout(generationTimeout)
