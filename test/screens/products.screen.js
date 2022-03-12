@@ -32,8 +32,9 @@ class ProductsScreen{
     }   
     
     async findPublishedProduct(productTitle){
-        this.#search.click()
-        this.#searchProducts.setValue(productTitle)
+        await this.#search.click()
+        await this.#searchProducts.waitForExist({ timeout:30000 })
+        await this.#searchProducts.setValue(productTitle)
     }
 
     async getProductName(){

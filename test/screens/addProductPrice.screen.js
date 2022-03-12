@@ -25,7 +25,7 @@ class ProductsScreen{
     }
 
     async backToAddProductScreen(){
-        this.#backButton.click()
+        await this.#backButton.click()
     }
 }
 
